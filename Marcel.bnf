@@ -1,0 +1,83 @@
+function_symbol ::= "function" | "fonction"
+
+function ::= function_symbol type symbol "=" "[" function_params "]" block
+
+function_params ::= function_param | function_param "," function_params
+
+function_param ::= type symbol
+
+block ::= begin_symbol statements end_symbol
+
+begin_symbol ::= "begin" | "debut"
+
+end_symbol ::= "end" | "fin"
+
+statements ::= statement | statement ";" statements
+
+statement ::= if_statement | while_statement | for_statement | declaration_statement | return_statement | expression_statement
+
+if_statement ::= if_symbol expression block [ elseif_statement | else_statement ]
+
+if_symbol ::= "if" | "si"
+
+elseif_statement ::= elseif_symbol expression block [ elseif_statement | else_statement ]
+
+elseif_symbol ::= "elseif" | "sinonsi"
+
+else_statement ::= else_symbol block
+
+else_symbol ::= "else" | "sinon"
+
+while_statement ::= while_symbol expression block
+
+while_symbol ::= "while" | "tanke"
+
+for_statement ::= for_symbol statement ";" expression ";" expression block
+
+for_symbol ::= "for" | "pour"
+
+declaration_statement ::= declaration
+
+declaration ::= type symbol [ "=" expression ] ";"
+
+return_statement ::= return_symbol expression ";"
+
+return_symbol ::= "return" | "retourne"
+
+expression_statement ::= expression ";"
+
+expression ::= assignment_expression | function_call_expression | value_expression
+
+assignment_expression ::= symbol "=" binop_expression
+
+binop_expression ::= binop_expression binop binop_expression | value_expression
+
+binop ::= "+" | "-" | "*" | "/" | "%" | "==" | "!=" | "<" | "<=" | ">" | ">="
+
+value_expression ::= value | symbol
+
+value ::= number | float | string | char | boolean
+
+function_call_expression ::= symbol "(" [ function_call_params ] ")"
+
+function_call_params ::= expression | expression "," function_call_params
+
+number ::= [ "-" ] digits
+
+float ::= number [ "." digits ]
+
+digits ::= digit | digit digits
+
+digit ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+string ::= '"' chars '"'
+
+chars ::= char | char chars
+
+char ::= any character except "
+
+boolean ::= "true" | "false" | "vrai" | "faux"
+
+symbol ::= [ a-z | A-Z | _ ] [ a-z | A-Z | 0-9 | _ ]*
+
+type ::= "int" | "float" | "string" | "char" | "bool" | "entier" | "flottant" | "caracteres" | "caractere" | "booleen"

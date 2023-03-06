@@ -1,0 +1,59 @@
+function int succ = [int x] begin
+    return (x + 1);
+end
+
+function int factorial = [int x] begin
+    if x <= 1 begin
+        return 1;
+    end
+    return x * factorial(x - 1);
+end
+
+function int fibo = [int x] begin
+    if x <= 1 begin
+        return 1;
+    end
+    return fibo(x - 1) + fibo(x - 2);
+end
+
+function string its_invalid = [] begin
+    return 5;
+end
+
+function entier main = [] debut
+
+    entier i = 0;
+    int j = 0;
+
+    int target = 2;
+
+    while true begin
+        j = 0;
+        while true begin
+            print("while: " + i + " " + j + '\n');
+            j = succ(j);
+            if j == target begin
+                break;
+            end
+        end
+        i = succ(i);
+        if i == target begin
+            break;
+        end
+    end
+
+    for int k = 0; k < target; k = succ(k) begin
+        for int l = 0; l < target; l = succ(l) begin
+            print("for: " + k + " " + l + '\n');
+        end
+    end
+
+    print(factorial(5) + " == " + 120 + '\n');
+    print(fibo(10) + " == " + 89 + '\n');
+    print(42.5 / 2.0, '\n');
+    print(0 + (42.5 / 2), '\n');
+
+    any a = "hmm";
+
+    return a;
+fin
